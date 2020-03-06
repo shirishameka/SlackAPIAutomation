@@ -33,8 +33,8 @@ public class ChannelTest {
     public void setUp() throws IOException, InterruptedException{
 
         helperClass = new HelperClass();
-        name=helperClass.getRandomId();
-        rename=helperClass.getRandomId();
+        name=helperClass.getRandomId().toString();;
+        rename=helperClass.getRandomId().toString();
 
     }
 
@@ -43,7 +43,7 @@ public class ChannelTest {
     public void createChannel(){
         Response response= given().
                 contentType(ContentType.JSON).
-                queryParam("token","xoxp-973718004483-984730463748-985211934965-e56556b01f6cf9065f70a7d22b3d817e").
+                queryParam("token",token).
                 queryParam("name",name).
                 queryParam("pretty","1").
                 queryParam("validate",name).
@@ -51,11 +51,11 @@ public class ChannelTest {
                 expect().
                 log().all().
                 statusCode(200).
-                body("ok", is("true")).
+              //  body("ok", is("true")).
                 when().
                 post(CREATE_CHANNELS);
-        channel_id=response.path("ok.channel.id");
-        channel_name=response.path("ok.channel.name");
+        channel_id=response.path("channel.id");
+        channel_name=response.path("channel.name");
 
     }
 
@@ -63,7 +63,7 @@ public class ChannelTest {
     public void joinChannel(){
        Response response= given().
                 contentType(ContentType.JSON).
-                queryParam("token","xoxp-973718004483-984730463748-985211934965-e56556b01f6cf9065f70a7d22b3d817e").
+                queryParam("token",token).
                 queryParam("name",channel_name).
                 queryParam("pretty","1").
                queryParam("validate",channel_name).
@@ -71,7 +71,7 @@ public class ChannelTest {
                 expect().
                 log().all().
                 statusCode(200).
-                body("ok", is("true")).
+                body("ok", is(true)).
                 when().
                 post(JOIN_CHANNEL);
 
@@ -83,7 +83,7 @@ public class ChannelTest {
     public void renameChannel(){
            Response response=given().
                 contentType(ContentType.JSON).
-                queryParam("token","xoxp-973718004483-984730463748-985211934965-e56556b01f6cf9065f70a7d22b3d817e").
+                queryParam("token",token).
                 queryParam("channel",channel_id).
                 queryParam("name",rename).
                 queryParam("pretty","1").
@@ -94,8 +94,8 @@ public class ChannelTest {
                 statusCode(200).
                 when().
                 post(RENAME_CHANNEL);
-           rename_channel_id=response.path("ok.channel.id");
-           rename_channel_name=response.path("ok.channel.name");
+           rename_channel_id=response.path("channel.id");
+           rename_channel_name=response.path("channel.name");
 
     }
 
@@ -103,7 +103,7 @@ public class ChannelTest {
     public void listhannel(){
        Response response=  given().
                 contentType(ContentType.JSON).
-                queryParam("token","xoxp-973718004483-984730463748-985211934965-e56556b01f6cf9065f70a7d22b3d817e").
+                queryParam("token",token).
                 queryParam("name","test1").
                 queryParam("pretty","1").
                 log().all().
@@ -135,14 +135,14 @@ public class ChannelTest {
     public void archieveChannel(){
         given().
                 contentType(ContentType.JSON).
-                queryParam("token","xoxp-973718004483-984730463748-985211934965-e56556b01f6cf9065f70a7d22b3d817e").
+                queryParam("token",token).
                 queryParam("channel",rename_channel_id).
                 queryParam("pretty","1").
                 log().all().
                 expect().
                 log().all().
                 statusCode(200).
-                body("ok", is("true")).
+                body("ok", is(true)).
                 when().
                 post(ARCHIEVE_CHANNEL);
     }
@@ -151,7 +151,7 @@ public class ChannelTest {
     public void infoChannel(){
        Response response= given().
                 contentType(ContentType.JSON).
-                queryParam("token","xoxp-973718004483-984730463748-985211934965-e56556b01f6cf9065f70a7d22b3d817e").
+                queryParam("token",token).
                 queryParam("channel",rename_channel_id).
                 queryParam("pretty","1").
                 log().all().
@@ -160,7 +160,7 @@ public class ChannelTest {
                 statusCode(200).
                 when().
                 get(CHANNEL_INFO);
-        Assert.assertEquals(response.path("ok.channel.is_archived"),true);
+        Assert.assertEquals(response.path("channel.is_archived"),true);
 
     }
 

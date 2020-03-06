@@ -17,4 +17,7 @@ public class Constants {
     public static final String ARCHIEVE_CHANNEL="https://slack.com/api/channels.archive";
 
     public static final String CHANNEL_INFO="https://slack.com/api/channels.info";
+
+
+    public static final String token="xoxp-973718004483-984730463748-973810640019-86a7d283f3ca9e0902b7d62026b7a58e";
 }
