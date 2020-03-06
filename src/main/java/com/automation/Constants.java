@@ -19,5 +19,5 @@ public class Constants {
     public static final String CHANNEL_INFO="https://slack.com/api/channels.info";
 
 
-    public static final String token="xoxp-973718004483-984730463748-973810640019-86a7d283f3ca9e0902b7d62026b7a58e";
+    public static final String token="xoxp-973718004483-984730463748-987510898406-49c0631c5ef24d24e548175be89f1b7c";
 }
