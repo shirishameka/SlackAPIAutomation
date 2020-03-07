@@ -55,6 +55,7 @@ Tests write logs while they are running which provide further information about 
 These files reside in ./logs directory and can be viewed locally in your browser by navigating to that folder.
 
 
-```Note : Token will expire, hence we have to generate new token each time and modify it in "Constants file"
+``` 
+Note : Token will expire, hence we have to generate new token each time and modify it in "Constants file"
 To Generate token : https://api.slack.com/legacy/custom-integrations/legacy-tokens
  ```
